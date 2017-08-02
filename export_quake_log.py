@@ -6,7 +6,7 @@ from ORM import MongoDB
 
 
 def export_quake_log(file, pattern):
-    mongo_db = MongoDB(
+    db = MongoDB(
         database_name='quake',
         collection_name='games'
     )
@@ -28,7 +28,7 @@ def export_quake_log(file, pattern):
                 }
                 game['kills'].append(kill_row)
             elif END_GAME in row:
-                mongo_db.save(game)
+                db.save(game)
                 game_count += 1
                 game_name = 'game_{}'.format(game_count)
                 game = {
