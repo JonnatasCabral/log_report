@@ -1,8 +1,9 @@
-from ORM import MongoDB
-from ORM import get_kills
-from ORM import get_players
-from ORM import count_game_kills
+from .db import MongoDB
+from .db import get_kills
+from .db import get_players
 from collections import Counter
+from .db import count_game_kills
+import operator
 
 
 db = MongoDB(
@@ -24,6 +25,8 @@ def players_ranking():
     games_cursor = db.collection.find()
     for game in games_cursor:
         ranking += Counter(get_kills(game))
-
     ranking = dict(ranking)
-    return ranking
+    # sort ranking by value dict and return list of tuples ascending order
+    sorted_ranking = sorted(ranking.items(), key=operator.itemgetter(1))
+    # return opposite of list : descending ascending
+    return sorted_ranking[::-1]

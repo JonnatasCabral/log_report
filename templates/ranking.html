@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Players Ranking</title>
+</head>
+<body>
+<h1>Players Ranking</h1>
+<ul id="entries">
+    {% for key, value in entries %}
+        <li>{{ key }} ---- {{ value }}</li>
+    {% endfor %}
+    </ul></body>
+</html>

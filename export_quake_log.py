@@ -2,7 +2,7 @@ import re
 from patterns import KILL_PATTERN
 from patterns import END_GAME
 from enums import GroupPattern
-from ORM import MongoDB
+from .db import MongoDB
 
 
 def export_quake_log(file, pattern):
