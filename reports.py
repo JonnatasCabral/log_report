@@ -1,9 +1,10 @@
-from .db import MongoDB
-from .db import get_kills
-from .db import get_players
+from log_report.db import MongoDB
+from log_report.db import get_kills
+from log_report.db import get_players
 from collections import Counter
-from .db import count_game_kills
+from log_report.db import count_game_kills
 import operator
+import pymongo
 
 
 db = MongoDB(
@@ -12,7 +13,7 @@ db = MongoDB(
 )
 
 
-def game_summary(game):
+def get_game_summary(game):
     return {
         'total_kills': count_game_kills(game),
         'players': get_players(game),
@@ -20,7 +21,7 @@ def game_summary(game):
     }
 
 
-def players_ranking():
+def get_players_ranking():
     ranking = Counter({})
     games_cursor = db.collection.find()
     for game in games_cursor:
@@ -30,3 +31,11 @@ def players_ranking():
     sorted_ranking = sorted(ranking.items(), key=operator.itemgetter(1))
     # return opposite of list : descending ascending
     return sorted_ranking[::-1]
+
+
+def get_all_games_summary():
+    games_summary = {}
+    games_cursor = db.collection.find().sort([("game", pymongo.ASCENDING)])
+    for game in games_cursor:
+        games_summary[game['game']] = get_game_summary(game)
+    return games_summary
