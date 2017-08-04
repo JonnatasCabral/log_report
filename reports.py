@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '..')
 from log_report.db import MongoDB
 from log_report.db import get_kills
 from log_report.db import get_players
@@ -35,7 +37,11 @@ def get_players_ranking():
 
 def get_all_games_summary():
     games_summary = {}
-    games_cursor = db.collection.find().sort([("game", pymongo.ASCENDING)])
+    games_cursor = db.collection.find()
     for game in games_cursor:
         games_summary[game['game']] = get_game_summary(game)
     return games_summary
+
+
+if __name__ == '__main__':
+    print(get_all_games_summary())

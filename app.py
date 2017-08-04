@@ -7,6 +7,6 @@ app.config.from_object(__name__)
 
 
 @app.route("/")
-def hello():
+def ranking():
     entries = get_players_ranking()
     return render_template('ranking.html', entries=entries)
