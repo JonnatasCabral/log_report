@@ -40,6 +40,7 @@ def export_quake_log(file, pattern):
                 }
                 game['kills'].append(kill_row)
         db.save(game)
+        print('Successfully export Quake 3 Logs to MongoDB ')
 
 file = '2-games.txt'
 export_quake_log(file, KILL_PATTERN)

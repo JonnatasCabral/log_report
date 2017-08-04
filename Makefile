@@ -4,3 +4,9 @@ summary:
 	@python reports.py
 run:
 	@FLASK_APP=./app.py flask run
+
+requirements:
+	@pip install -r requirements.txt
+
+setup: requirements
+
