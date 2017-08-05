@@ -1,5 +1,6 @@
 import unittest
 from db.utils import check_players_in_dict_of_kills
+from db.utils import check_negative_players
 from db import get_players_deaths_by_world
 from db import get_players_kills
 from db import get_players
@@ -42,6 +43,14 @@ class TestutilsMethods(unittest.TestCase):
         updated_dict = dict(
             check_players_in_dict_of_kills(self.players, self.dict_kills))
         self.assertEqual(updated_dict, {'Mocinha': 0, 'Isgalamido': -1})
+
+    def test_check_negative_players(self):
+        current_dict = dict(
+            check_players_in_dict_of_kills(self.players, self.dict_kills))
+        self.assertEqual(current_dict['Isgalamido'], -1)
+        updated_dict = check_negative_players(current_dict)
+        self.assertEqual(updated_dict['Isgalamido'], 0)
+
 
 if __name__ == '__main__':
     unittest.main()
