@@ -1,4 +1,6 @@
 from collections import Counter
+from .utils import check_players_in_dict_of_kills
+from .utils import check_negative_players
 
 
 def count_game_kills(game):
@@ -61,4 +63,8 @@ def get_kills(game):
     """
     kills = Counter(get_players_kills(game))
     deaths = Counter(get_players_deaths_by_world(game))
-    return dict(kills - deaths)
+    kills.subtract(deaths)
+    players_list = get_players(game)
+    kills = check_players_in_dict_of_kills(players_list, kills)
+    kills = check_negative_players(kills)
+    return dict(kills)
