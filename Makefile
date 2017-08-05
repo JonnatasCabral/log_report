@@ -8,9 +8,12 @@ run:
 requirements:
 	@pip install -r requirements.txt
 
+bower:
+	@bower install
 test: 
 	@python -m unittest
-setup: requirements
+
+setup: requirements bower
 
 
 
