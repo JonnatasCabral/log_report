@@ -9,12 +9,6 @@ import operator
 import pymongo
 
 
-db = MongoDB(
-    database_name='quake',
-    collection_name='games'
-)
-
-
 def get_game_summary(game):
     return {
         'total_kills': count_game_kills(game),
@@ -23,7 +17,7 @@ def get_game_summary(game):
     }
 
 
-def get_players_ranking():
+def get_players_ranking(db):
     ranking = Counter({})
     games_cursor = db.collection.find()
     for game in games_cursor:
@@ -35,7 +29,7 @@ def get_players_ranking():
     return sorted_ranking[::-1]
 
 
-def get_all_games_summary():
+def get_all_games_summary(db):
     games_summary = {}
     games_cursor = db.collection.find()
     for game in games_cursor:
@@ -44,4 +38,8 @@ def get_all_games_summary():
 
 
 if __name__ == '__main__':
-    print(get_all_games_summary())
+    db = MongoDB(
+        database_name='quake',
+        collection_name='games'
+        )
+    print(get_all_games_summary(db))

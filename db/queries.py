@@ -2,6 +2,10 @@ from collections import Counter
 from .utils import check_players_in_dict_of_kills
 from .utils import check_negative_players
 
+__all__ = [
+    'count_game_kills', 'get_players', 'get_players_kills',
+    'get_kills', 'get_players_deaths_by_world']
+
 
 def count_game_kills(game):
     """

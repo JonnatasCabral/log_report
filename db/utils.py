@@ -1,3 +1,6 @@
+__all__ = ['check_players_in_dict_of_kills', 'check_negative_players']
+
+
 def check_players_in_dict_of_kills(player_list, dict_kills):
     for player in player_list:
         if not dict_kills.get(player):
