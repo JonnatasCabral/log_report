@@ -5,7 +5,7 @@
     * Virtualenv
     * Pip
 
-# Tip how to configure workspace:
+### Tip how to configure workspace:
 [Python workspace](https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14)
 
 # Setup Project:
