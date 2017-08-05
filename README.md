@@ -17,6 +17,10 @@
 $ make setup
 ```
 
+### Env vars:
+
+* Set `DATABASE_URL` in a `.env` file There is a exemple in `.env-example`
+
 ### Exporting Logs:
 ```
 $ make export_log
